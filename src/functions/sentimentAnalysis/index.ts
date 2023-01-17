@@ -4,8 +4,16 @@ import { formatJSONResponse } from '@libs/api-gateway';
 export const handler = async (event: APIGatewayProxyEvent) => {
     try {
         // Your code here
+        const body = JSON.parse(event.body || '{}');
 
-        return formatJSONResponse({ message: "test" });
+        const { text } = body;
+
+        if (!text) {
+            throw Error('You need to pass up a field of "text" to analyse')
+        }
+
+        const res = await analyseSentiment({ text });
+        return formatJSONResponse(res)
     } catch (error) {
         console.error(error);
         return {
@@ -14,3 +22,11 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         }
     }
 };
+
+const analyseSentiment = async ({ text }: { text: string }) => {
+    return {
+        textAnalysed: text,
+        result: 'fake'
+    }
+};
+
