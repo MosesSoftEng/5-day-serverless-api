@@ -93,3 +93,16 @@ The project code base is mainly located within the `src` folder. This folder is 
 ### Advanced usage
 
 Any tsconfig.json can be used, but if you do, set the environment variable `TS_NODE_CONFIG` for building the application, eg `TS_NODE_CONFIG=./tsconfig.app.json npx serverless webpack`
+
+## Client Comprehend - AWS SDK.
+Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find insights and relationships in text.
+
+```bash
+# Add Client Comprehend - AWS SDK to project
+npm i -s @aws-sdk/client-comprehend
+
+
+# Deploy
+```
+
+

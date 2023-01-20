@@ -10,6 +10,7 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@aws-sdk/client-comprehend": "^3.254.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0"
   },
