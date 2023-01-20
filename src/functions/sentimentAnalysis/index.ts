@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { formatJSONResponse } from '@libs/api-gateway';
 
-// Client Comprehend - AWS SDK import.
+// Client Comprehend imports.
 import {
     ComprehendClient,
     DetectSentimentCommand,
@@ -10,10 +10,8 @@ import {
 
 const comprehendClient = new ComprehendClient({});
 
-
 export const handler = async (event: APIGatewayProxyEvent) => {
     try {
-        // Your code here
         const body = JSON.parse(event.body || '{}');
 
         const { text } = body;
@@ -33,6 +31,12 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     }
 };
 
+/**
+ * Analyzes the sentiment of the provided text
+ *
+ * @param {string} text - The text to analyze
+ * @return {Promise<DetectSentimentCommandOutput>} - A promise that resolves to the sentiment analysis result
+ */
 const analyseSentiment = async ({ text }: { text: string }) => {
     const input: DetectSentimentCommandInput = {
         Text: text,
@@ -43,4 +47,3 @@ const analyseSentiment = async ({ text }: { text: string }) => {
     const response = await comprehendClient.send(command);
     return response;
 };
-
